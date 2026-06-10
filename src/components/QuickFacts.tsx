@@ -1,15 +1,17 @@
 import { Bed, Users, Waves, Zap } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const facts = [
-  { icon: Bed, label: "2 Schlafzimmer" },
-  { icon: Users, label: "Max. 4 Gäste" },
-  { icon: Waves, label: "Beheizter Pool" },
-  { icon: Zap, label: "E-Ladestation" },
-];
+import { useLanguage } from "@/i18n/context";
 
 const QuickFacts = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useLanguage();
+
+  const facts = [
+    { icon: Bed, label: t.quickFacts.bedrooms },
+    { icon: Users, label: t.quickFacts.guests },
+    { icon: Waves, label: t.quickFacts.pool },
+    { icon: Zap, label: t.quickFacts.charger },
+  ];
 
   return (
     <div ref={ref} className={`bg-primary transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>

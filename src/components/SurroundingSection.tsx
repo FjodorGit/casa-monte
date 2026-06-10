@@ -1,50 +1,34 @@
 import { ExternalLink } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useLanguage } from "@/i18n/context";
 
-const activities = [
-  {
-    title: "Samstagsmarkt Loulé",
-    desc: "Traditionelles Handwerk und frische lokale Produkte in der historischen Markthalle.",
-    link: "https://maps.app.goo.gl/uXpX5y3r9GzC9K6r8",
-    emoji: "🏪",
-  },
-  {
-    title: "Praia da Falésia",
-    desc: "Spektakuläre rote Klippen und goldener Sand — einer der schönsten Strände Europas.",
-    link: "https://maps.app.goo.gl/3XpX5y3r9GzC9K6r8",
-    emoji: "🏖️",
-  },
-  {
-    title: "Faro Altstadt",
-    desc: "Historischer Charme, kopfsteingepflasterte Gassen und ein moderner Yachthafen.",
-    link: "https://maps.app.goo.gl/faro",
-    emoji: "🏛️",
-  },
-  {
-    title: "Almancil & Golf",
-    desc: "Weltklasse-Golfplätze wie Vale do Lobo und Quinta do Lago in 20 Min. Entfernung.",
-    link: "https://maps.app.goo.gl/almancil",
-    emoji: "⛳",
-  },
-  {
-    title: "Ria Formosa Naturpark",
-    desc: "Einzigartige Lagunenlandschaft mit Bootstouren und exotischer Vogelwelt.",
-    link: "https://maps.app.goo.gl/riaformosa",
-    emoji: "🦩",
-  },
+// Links and emojis are language-independent; title/desc come from translations
+// by index (same order as `t.surrounding.activities`).
+const activityMeta = [
+  { link: "https://maps.app.goo.gl/uXpX5y3r9GzC9K6r8", emoji: "🏪" },
+  { link: "https://maps.app.goo.gl/3XpX5y3r9GzC9K6r8", emoji: "🏖️" },
+  { link: "https://maps.app.goo.gl/faro", emoji: "🏛️" },
+  { link: "https://maps.app.goo.gl/almancil", emoji: "⛳" },
+  { link: "https://maps.app.goo.gl/riaformosa", emoji: "🦩" },
 ];
 
 const SurroundingSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { t } = useLanguage();
+
+  const activities = t.surrounding.activities.map((a, i) => ({
+    ...a,
+    ...activityMeta[i],
+  }));
 
   return (
     <section id="surrounding" className="py-20 md:py-28">
       <div className="container">
         <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary text-center mb-4">
-          Umgebung & Aktivitäten
+          {t.surrounding.heading}
         </h2>
         <p className="text-muted-foreground text-center max-w-xl mx-auto mb-12">
-          Die Algarve bietet weit mehr als Sonne und Strand — entdecke die Highlights rund um Casa Monte.
+          {t.surrounding.intro}
         </p>
 
         <div
@@ -62,7 +46,7 @@ const SurroundingSection = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-foreground hover:underline"
               >
-                In Google Maps öffnen <ExternalLink size={13} />
+                {t.common.openMaps} <ExternalLink size={13} />
               </a>
             </div>
           ))}

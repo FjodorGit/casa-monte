@@ -1,11 +1,14 @@
 import aussicht from "@/assets/aussicht.png";
+import { useLanguage } from "@/i18n/context";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section id="home" className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       <img
         src={aussicht}
-        alt="Panoramablick von Villa Casa Monte über die Algarve-Landschaft zum Atlantik"
+        alt={t.hero.imageAlt}
         className="absolute inset-0 w-full h-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-foreground/40 via-foreground/20 to-foreground/60" />
@@ -14,10 +17,10 @@ const HeroSection = () => {
           Villa Casa Monte
         </h1>
         <p className="font-display text-lg md:text-2xl text-primary-foreground/90 italic mb-4">
-          Dein Hideaway über den Dächern von Loulé
+          {t.hero.tagline}
         </p>
         <p className="text-primary-foreground/80 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-          Erlebe fesselnde Blicke auf den Atlantik in einer exklusiven 214m² Villa auf dem Berg Alfeicão.
+          {t.hero.subtitle}
         </p>
         <a
           href="https://www.traum-ferienwohnungen.de/"
@@ -25,7 +28,7 @@ const HeroSection = () => {
           rel="noopener noreferrer"
           className="inline-block mt-8 rounded-full bg-primary text-primary-foreground px-8 py-3.5 font-semibold text-sm hover:shadow-xl hover:shadow-primary/30 transition-all"
         >
-          Jetzt Buchen
+          {t.common.book}
         </a>
       </div>
     </section>

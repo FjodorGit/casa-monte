@@ -66,6 +66,7 @@
     "npm:tailwindcss-animate@^1.0.7": "1.0.7_tailwindcss@3.4.19",
     "npm:tailwindcss@^3.4.17": "3.4.19",
     "npm:typescript-eslint@^8.38.0": "8.60.1_eslint@9.39.4_typescript@5.9.3",
+    "npm:typescript@*": "5.9.3",
     "npm:typescript@^5.8.3": "5.9.3",
     "npm:vaul@~0.9.9": "0.9.9_react@18.3.1_react-dom@18.3.1__react@18.3.1_@types+react@18.3.30_@types+react-dom@18.3.7__@types+react@18.3.30",
     "npm:vite@^5.4.19": "5.4.21_@types+node@22.19.19",

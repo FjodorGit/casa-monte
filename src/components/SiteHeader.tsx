@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Die Villa", href: "#villa" },
-  { label: "Umgebung", href: "#surrounding" },
-  { label: "Guest Guide", href: "#guide" },
-];
+import { useLanguage } from "@/i18n/context";
+import LanguageToggle from "@/components/LanguageToggle";
 
 const BOOKING_URL = "https://www.traum-ferienwohnungen.de/";
 
 const SiteHeader = () => {
   const [open, setOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.villa, href: "#villa" },
+    { label: t.nav.surrounding, href: "#surrounding" },
+    { label: t.nav.guide, href: "#guide" },
+  ];
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/90 backdrop-blur-md border-b border-border">
@@ -26,19 +29,23 @@ const SiteHeader = () => {
               {l.label}
             </a>
           ))}
+          <LanguageToggle />
           <a
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-primary text-primary-foreground px-6 py-2.5 text-sm font-semibold hover:shadow-lg hover:shadow-primary/20 transition-all"
           >
-            Jetzt Buchen
+            {t.common.book}
           </a>
         </nav>
 
-        <button onClick={() => setOpen(!open)} className="md:hidden text-foreground">
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LanguageToggle />
+          <button onClick={() => setOpen(!open)} className="text-foreground" aria-label="Menu">
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -54,7 +61,7 @@ const SiteHeader = () => {
             rel="noopener noreferrer"
             className="block text-center rounded-full bg-primary text-primary-foreground px-6 py-3 font-semibold"
           >
-            Jetzt Buchen
+            {t.common.book}
           </a>
         </div>
       )}
